@@ -1,0 +1,4 @@
+{
+    "start" : "commands/start.json",
+    "prompt" : "commands/prompt.json"
+}
