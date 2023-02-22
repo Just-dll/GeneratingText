@@ -6,9 +6,9 @@ const token = process.env.TELEGRAM_TOKEN;
 const bot = new TelegramBot(token, { polling: true });
 console.log("Bot just started")
 
-let commands = require('commands.json');
+let commands = require('./commands.json');
 
-bot.setMyCommands(JSON.stringify(command))
+bot.setMyCommands(JSON.stringify(commands));
 
 bot.on('message', async msg => {
   const chatId = msg.chat.id;
