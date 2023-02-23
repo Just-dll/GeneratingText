@@ -11,6 +11,14 @@ function writeIntoLogs(text) {
     });
     console.log(text);
 }
+
+async function LogError(error) {
+    fs.appendFile('./logs/errors.txt', error, (err) => {
+        if (err) console.log(err);
+    })
+    console.log(error);
+}
+
 async function logging(msg) {
     if (typeof msg !== 'undefined') {
         let message = `[${Date().toLocaleString()}]`+" Received message " + msg.text + " from chat " + msg.chat.id + '\n';
@@ -20,5 +28,5 @@ async function logging(msg) {
 
 
 module.exports = {
-    logging, 
+    logging, LogError,
 };

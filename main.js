@@ -22,10 +22,15 @@ async function onStart(msg) {
 // Define the onPrompt handler function
 async function onPrompt(msg) {
   const chatId = msg.chat.id;
-  log.logging(msg);
-  const text = msg.text.substr(msg.text.indexOf(" ") + 1);;
-  const result = await Generate.connectToGeneration(text)
-  bot.sendMessage(chatId, result);
+  try {
+    log.logging(msg);
+    const text = msg.text.substr(msg.text.indexOf(" ") + 1);;
+    const result = await Generate.connectToGeneration(text)
+    bot.sendMessage(chatId, result);
+  }
+  catch (err) {
+    log.LogError(err);
+  }
 }
 
 // Loop through the commands array and set up the command handlers
