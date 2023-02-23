@@ -1,4 +1,10 @@
-{
-    "start" : "commands/start.json",
-    "prompt" : "commands/prompt.json"
-}
+[
+    {
+        "command" : "start",
+        "description" : "Starts the thing"
+    },
+    {
+        "command" : "prompt",
+        "description" : "Giving you text by your prompt"
+    }
+]
