@@ -20,10 +20,10 @@ async function onStart(msg) {
 }
 
 // Define the onPrompt handler function
-async function onPrompt(msg, match) {
+async function onPrompt(msg) {
   const chatId = msg.chat.id;
   log.logging(msg);
-  const text = match[1];
+  const text = msg.text.substr(msg.text.indexOf(" ") + 1);;
   const result = await Generate.connectToGeneration(text)
   bot.sendMessage(chatId, result);
 }
