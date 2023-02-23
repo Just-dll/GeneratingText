@@ -10,18 +10,18 @@ let commands = require('./commands.json');
 
 bot.setMyCommands(JSON.stringify(commands));
 
-bot.onText('start', async msg => {
+bot.on('message', async msg => {
   const chatId = msg.chat.id;
-  await bot.sendMessage(chatId, 'Hi, welcome');
+  if (msg.text == '/start') {
+    await bot.sendMessage(chatId, 'Hi, welcome');
     console.log('User ' + msg.chat.username + ' just started using bot');
-});
-bot.onText(/\/prompt (.+)/ , async function(msg, match) {
-  const chatId = msg.chat.id;
-  var timeF = new Date().toLocaleString();
-  console.log(`[${timeF}]`+" Received message " + msg.text + " from chat " + chatId);
-  const text = match[1];
-  const result = await myModule.connectToGeneration(text)
-  bot.sendMessage(chatId, result);
-  var time = new Date().toLocaleString();
-  console.log(`[${time}]`+" The user " + msg.chat.username + " received response");
+  }
+  else {
+    var timeF = new Date().toLocaleString();
+    console.log(`[${timeF}]`+" Received message " + msg.text + " from chat " + chatId);
+    const result = await myModule.connectToGeneration(msg.text)
+    bot.sendMessage(chatId, result);
+    var time = new Date().toLocaleString();
+    console.log(`[${time}]`+" The user " + msg.chat.username + " received response");
+  }
 });
