@@ -1,10 +1,12 @@
 [
     {
-        "command" : "start",
-        "description" : "Starts the thing"
+      "command": "start",
+      "description": "Starts the thing",
+      "handler": "onStart"
     },
     {
-        "command" : "prompt",
-        "description" : "Giving you text by your prompt"
+      "command": "prompt",
+      "description": "Giving you text by your prompt",
+      "handler": "onPrompt"
     }
 ]
