@@ -1,26 +1,28 @@
-const axios = require("axios");
-
-require("dotenv").config();
+const { Configuration, OpenAIApi } = require("openai");
 
 const apiKey = process.env.OPENAI_TOKEN;
 
-const client = axios.create({
-  headers: {
-    Authorization: "Bearer " + apiKey,
-  },
+const configuration = new Configuration({
+  apiKey: apiKey,
 });
+const openai = new OpenAIApi(configuration);
+
+require("dotenv").config();
 
 async function generateText(prompt)
 {
 
 const params = {
-  prompt: prompt,
   model: "text-davinci-003",
-  max_tokens: 250,
-  temperature: 0.5,
+  prompt: prompt,
+  temperature: 0.3,
+  max_tokens: 150,
+  top_p: 1.0,
+  frequency_penalty: 0.0,
+  presence_penalty: 0.0,
 };
 
-const result = await client.post("https://api.openai.com/v1/completions", params)
+const result = await openai.createCompletion(params)
   return result.data.choices[0].text;
 }
 

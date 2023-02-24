@@ -13,10 +13,10 @@ function writeIntoLogs(text) {
 }
 
 async function LogError(error) {
-    fs.appendFile('./logs/errors.txt', error, (err) => {
+    fs.appendFile('./logs/errors.txt', `[${Date().toLocaleString()}] ` + error + '\n', (err) => {
         if (err) console.log(err);
     })
-    console.log(error);
+    console.log(`[${Date().toLocaleString()}]` + error);
 }
 
 async function logging(msg) {
@@ -25,7 +25,6 @@ async function logging(msg) {
         writeIntoLogs(message);
     }
 }
-
 
 module.exports = {
     logging, LogError,

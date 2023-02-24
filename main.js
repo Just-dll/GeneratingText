@@ -23,13 +23,15 @@ async function onStart(msg) {
 async function onPrompt(msg) {
   const chatId = msg.chat.id;
   try {
+    if(msg.text === "/prompt") throw "Prompt is empty";
     log.logging(msg);
-    const text = msg.text.substr(msg.text.indexOf(" ") + 1);;
+    const text = msg.text.substr(msg.text.indexOf(" ") + 1);
     const result = await Generate.connectToGeneration(text)
     bot.sendMessage(chatId, result);
   }
   catch (err) {
     log.LogError(err);
+    bot.sendMessage(chatId, err)
   }
 }
 
